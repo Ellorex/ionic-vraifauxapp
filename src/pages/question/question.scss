@@ -1,3 +1,13 @@
 page-question {
-
+    .answer {
+        padding: 15% 0;
+        text-align: center;
+        .img {
+            max-width: 20%;
+            margin: auto;
+            img {
+                width: 100%;
+            }
+        }
+    }
 }

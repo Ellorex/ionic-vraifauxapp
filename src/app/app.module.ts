@@ -14,7 +14,10 @@ import { QuestionsProvider } from '../providers/questions/questions';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage, 
+    QuestionPage,
+    ScoresPage,
+    OptionsPage
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,10 @@ import { QuestionsProvider } from '../providers/questions/questions';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage, 
+    QuestionPage, 
+    ScoresPage, 
+    OptionsPage
   ],
   providers: [
     StatusBar,

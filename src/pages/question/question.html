@@ -15,4 +15,16 @@
 
 <ion-content padding>
 
+<div> {{ question }}</div>
+
+<div class="answer">
+  <div>{{answer_text}}</div>
+  <div class="img">
+    <img src="{{answer_img}}" alt="">
+  </div>
+</div>
+<ion-list>
+  <button ion-button (click)="checkValue(true)">Vrai</button>
+  <button ion-button (click)="checkValue(false)">Faux</button>
+</ion-list>
 </ion-content>
