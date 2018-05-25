@@ -22,9 +22,16 @@
   <div class="img">
     <img src="{{answer_img}}" alt="">
   </div>
+  <div class="desc">{{answer_desc}}</div>
 </div>
-<ion-list>
-  <button ion-button (click)="checkValue(true)">Vrai</button>
-  <button ion-button (click)="checkValue(false)">Faux</button>
-</ion-list>
+
+<div class="next-btn" [ngStyle]="{'display':display_content ? 'none' : 'block' }">
+  <button ion-button (click)="nextQuestion()">Question suivante</button>
+</div>
+
+<div class="act-btn" [ngStyle]="{'display':display_content ? 'block' : 'none' }">
+  <button ion-button (click)="checkValue(true)" class="vrai">Vrai</button>
+  <button ion-button (click)="checkValue(false)" class="faux">Faux</button>
+</div>
+
 </ion-content>

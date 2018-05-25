@@ -16,11 +16,13 @@ import { IonicPage, NavController } from 'ionic-angular';
   templateUrl: 'question.html',
 })
 export class QuestionPage {
-  questions:Question [] = this.QuestionsProvider.questions;
+  questions:Question [] = [];
   question: string;
   current_question: any;
   answer_img: string;
   answer_text: string;
+  answer_desc: string;
+  display_content: boolean = true;
 
   constructor(
     public navCtrl: NavController, 
@@ -28,29 +30,50 @@ export class QuestionPage {
   ){}
 
   displayOneQuestion() {
+    this.answer_img = "";
+    this.answer_text = "";
+    this.answer_desc= "";
     let numRandom = Math.floor(Math.random()*this.questions.length);
+    console.log(numRandom);
     let questionRandom = this.questions[numRandom].getTitle();
+    console.log(questionRandom);
     this.current_question = this.questions[numRandom];
-    return questionRandom;
+    console.log(this.questions);
+
+    this.questions.splice(numRandom, 1);
+    
+    console.log( this.questions);
+
+    return this.question = questionRandom;
   }
 
-  ionViewWillEnter(){
-       this.question = this.displayOneQuestion();
-  }
-  ionViewDidLoad(questions){
-    this.QuestionsProvider.getQuestions();
-    
-    questions = this.QuestionsProvider.getQuestions();
+  ionViewDidLoad(){
+    this.questions = this.QuestionsProvider.getQuestions();
+    this.displayOneQuestion();
+
   }
 
   checkValue(value: boolean) {
     if(this.current_question.getValue() ==  value) {
       this.answer_img = "/assets/pictos/vrai.png";
       this.answer_text = "Bonne réponse";
+      this.answer_desc = this.current_question.getDescCorrect();
+      this.display_content = false;
+    
     } else {
       this.answer_text = "Mauvaise réponse";
       this.answer_img = "/assets/pictos/wrong.png";
+      this.answer_desc = this.current_question.getDescNotCorrect();
+      this.display_content = false;
     }
   }
 
+  nextQuestion() {
+    this.display_content = true;
+    this.displayOneQuestion();
+  }
+
+  goToScores() {
+    // quand numRandom = 0, affiche les scores
+  }
 }

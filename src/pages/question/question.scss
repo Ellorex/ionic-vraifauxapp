@@ -10,4 +10,29 @@ page-question {
             }
         }
     }
+    .act-btn {
+        position: absolute;
+        bottom: 5%;
+        text-align: center;
+        width: 100%;
+        padding-right: 16px;
+        button {
+            width: 9rem;
+            height: 4.5rem;
+            &.vrai {
+                background-color: green;
+            }
+            &.faux {
+                background-color: red;
+            }
+        }
+    }
+    .next-btn  {
+        display: none;
+        position: absolute;
+        bottom: 5%;
+        text-align: center;
+        width: 100%;
+        padding-right: 16px;
+    }
 }
