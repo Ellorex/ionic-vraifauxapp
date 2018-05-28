@@ -1,3 +1,4 @@
+import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,12 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'scores.html',
 })
 export class ScoresPage {
+  score: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.score = navParams.get('score');
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ScoresPage');
   }
-
+  goToHome() {
+    this.navCtrl.push(HomePage);
+  }
 }

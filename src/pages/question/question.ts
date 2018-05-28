@@ -1,3 +1,4 @@
+import { ScoresPage } from './../scores/scores';
 import { QuestionsProvider } from './../../providers/questions/questions';
 import { Question } from './../../model/Question';
 import { Component } from '@angular/core';
@@ -23,6 +24,7 @@ export class QuestionPage {
   answer_text: string;
   answer_desc: string;
   display_content: boolean = true;
+  score: number = 0;
 
   constructor(
     public navCtrl: NavController, 
@@ -34,15 +36,10 @@ export class QuestionPage {
     this.answer_text = "";
     this.answer_desc= "";
     let numRandom = Math.floor(Math.random()*this.questions.length);
-    console.log(numRandom);
     let questionRandom = this.questions[numRandom].getTitle();
-    console.log(questionRandom);
     this.current_question = this.questions[numRandom];
-    console.log(this.questions);
 
     this.questions.splice(numRandom, 1);
-    
-    console.log( this.questions);
 
     return this.question = questionRandom;
   }
@@ -54,10 +51,11 @@ export class QuestionPage {
   }
 
   checkValue(value: boolean) {
-    if(this.current_question.getValue() ==  value) {
+    if(this.current_question.getValue() ===  value) {
       this.answer_img = "/assets/pictos/vrai.png";
       this.answer_text = "Bonne réponse";
       this.answer_desc = this.current_question.getDescCorrect();
+      this.score += 1;
       this.display_content = false;
     
     } else {
@@ -74,6 +72,8 @@ export class QuestionPage {
   }
 
   goToScores() {
-    // quand numRandom = 0, affiche les scores
+    this.navCtrl.push(ScoresPage, {
+      score: this.score
+    });
   }
 }
